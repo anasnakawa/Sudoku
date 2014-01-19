@@ -1,0 +1,196 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+/* line 19, ../sass/_platform.scss */
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+/* line 23, ../sass/_platform.scss */
+body {
+  -webkit-touch-callout: none;
+  /* prevent callout to copy image, etc when tap to hold */
+  -webkit-text-size-adjust: none;
+  /* prevent webkit from resizing text to fit */
+  -webkit-user-select: none;
+  /* prevent copy paste, to allow, change 'none' to 'text' */
+  background-attachment: fixed;
+  font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+/* Portrait layout (default) */
+/* Landscape layout (with min-width) */
+/* line 72, ../sass/_platform.scss */
+h1 {
+  font-size: 24px;
+  font-weight: normal;
+  margin: 0px;
+  overflow: visible;
+  padding: 0px;
+  text-align: center;
+}
+
+/* line 81, ../sass/_platform.scss */
+.event {
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  color: #FFFFFF;
+  font-size: 12px;
+  margin: 0px 30px;
+  padding: 2px 0px;
+}
+
+/* line 90, ../sass/_platform.scss */
+.event.listening {
+  background-color: #333333;
+  display: block;
+}
+
+/* line 95, ../sass/_platform.scss */
+.event.received {
+  background-color: #4B946A;
+  display: none;
+}
+
+@keyframes fade {
+  /* line 101, ../sass/_platform.scss */
+  from {
+    opacity: 1.0;
+  }
+
+  /* line 102, ../sass/_platform.scss */
+  50% {
+    opacity: 0.4;
+  }
+
+  /* line 103, ../sass/_platform.scss */
+  to {
+    opacity: 1.0;
+  }
+}
+
+@-webkit-keyframes fade {
+  /* line 107, ../sass/_platform.scss */
+  from {
+    opacity: 1.0;
+  }
+
+  /* line 108, ../sass/_platform.scss */
+  50% {
+    opacity: 0.4;
+  }
+
+  /* line 109, ../sass/_platform.scss */
+  to {
+    opacity: 1.0;
+  }
+}
+
+/* line 112, ../sass/_platform.scss */
+.blink {
+  animation: fade 3000ms infinite;
+  -webkit-animation: fade 3000ms infinite;
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+/* line 14, ../sass/_base.scss */
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+
+/* line 19, ../sass/_base.scss */
+.clearfix:after {
+  clear: both;
+}
+
+/* line 8, ../sass/_board.scss */
+body {
+  color: #777777;
+}
+
+/* line 12, ../sass/_board.scss */
+.board {
+  display: inline-block;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  border-top: 1px solid blue;
+  border-left: 1px solid blue;
+}
+
+/* line 21, ../sass/_board.scss */
+.box {
+  float: left;
+}
+/* line 25, ../sass/_board.scss */
+.box .cell {
+  float: left;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-right: 1px solid blue;
+  border-bottom: 1px solid blue;
+}
+
+/* line 39, ../sass/_board.scss */
+.board .row .cell:last-child {
+  border-right: none;
+}
+/* line 44, ../sass/_board.scss */
+.board .row:last-child .cell {
+  border-bottom: none;
+}
+
+/* line 54, ../sass/_board.scss */
+.controls {
+  margin-top: 20px;
+}
+
+/* line 58, ../sass/_board.scss */
+.control {
+  float: left;
+  background-color: blue;
+  color: white;
+  margin: 0 2px;
+  text-align: center;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}

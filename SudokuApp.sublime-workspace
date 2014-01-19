@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"boar",
+				"boardSize"
+			],
+			[
+				"control",
+				"controlSize"
+			],
+			[
+				"contro",
+				"controlSize"
+			],
+			[
+				"text",
+				"textSize"
+			],
+			[
+				"get",
+				"getComputedStyle"
+			],
+			[
 				"val",
 				"value"
 			],
@@ -320,10 +340,6 @@
 				"animation"
 			],
 			[
-				"text",
-				"text-decoration"
-			],
-			[
 				"trans",
 				"transform"
 			],
@@ -496,29 +512,45 @@
 				"retinaWebKit"
 			],
 			[
-				"get",
-				"getTime"
-			],
-			[
 				"conca",
 				"concatOptions"
-			],
-			[
-				"des",
-				"destPath"
-			],
-			[
-				"lis",
-				"list-style-type"
-			],
-			[
-				"or",
-				"orbit-bullets"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "www/index.html",
+			"settings":
+			{
+				"buffer_size": 3643,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/sass/_board.scss",
+			"settings":
+			{
+				"buffer_size": 969,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/sass/main.scss",
+			"settings":
+			{
+				"buffer_size": 141,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/sass/_platform.scss",
+			"settings":
+			{
+				"buffer_size": 3847,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -588,6 +620,19 @@
 	},
 	"file_history":
 	[
+		"/Users/mbp/Documents/projects/personal/SudokuApp/www/temp-libs/underscore/underscore.js",
+		"/Users/mbp/Documents/projects/personal/SudokuApp/www/sass/_base.scss",
+		"/Users/mbp/.bower/cache/html5-boilerplate/a40e190ef11af52f46ec23b4ae099ed7/css/normalize.css",
+		"/Users/mbp/.bower/cache/html5-boilerplate/a40e190ef11af52f46ec23b4ae099ed7/css/main.css",
+		"/Users/mbp/Documents/projects/personal/SudokuApp/www/index.html",
+		"/Users/mbp/Documents/projects/personal/SudokuApp/www/js/app.js",
+		"/Users/mbp/Documents/projects/personal/SudokuApp/www/css/index.css",
+		"/Users/mbp/Documents/projects/personal/SudokuApp/www/sass/_platform.scss",
+		"/Users/mbp/Documents/projects/personal/SudokuApp/www/sass/main.scss",
+		"/Users/mbp/Documents/projects/personal/SudokuApp/www/config.rb",
+		"/Users/mbp/Documents/projects/personal/SudokuApp/www/js/index.js",
+		"/Users/mbp/Documents/projects/personal/SudokuApp/SudokuApp.sublime-project",
+		"/Users/mbp/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
 		"/Users/mbp/Documents/projects/personal/SudokuApp/www/res/icon/android/icon-36-ldpi.png",
 		"/Users/mbp/Documents/projects/shortpoint/user-interface/examples/config.json",
 		"/Users/mbp/Documents/projects/shortpoint/user-interface/examples/templates/controls/toggle-animation-model.ejs",
@@ -702,20 +747,7 @@
 		"/Users/mbp/Documents/projects/shortpoint/user-interface/src/css/shortpoint-engine-ltr.css",
 		"/Users/mbp/Documents/projects/shortpoint/user-interface/src/bower_components/font-awesome/css/font-awesome.css",
 		"/Users/mbp/Documents/projects/shortpoint/user-interface/src/bower_components/font-awesome/fonts/fontawesome-webfont.woff",
-		"/Users/mbp/Documents/projects/shortpoint/user-interface/dest/font/FontAwesome.otf",
-		"/Users/mbp/Documents/projects/shortpoint/user-interface/docs-src/src/documents/development-guidelines/daily-workflow.html.md",
-		"/Users/mbp/Documents/projects/shortpoint/user-interface/docs-src/src/documents/development-guidelines/creating-shortpoint-part-3.html.md",
-		"/Users/mbp/Documents/projects/shortpoint/user-interface/docs-src/src/documents/development-guidelines/creating-shortpoint-part-2.html.md",
-		"/Users/mbp/Documents/projects/shortpoint/user-interface/docs-src/src/documents/development-guidelines/creating-shortpoint-part-1.html.md",
-		"/Users/mbp/Documents/projects/shortpoint/user-interface/docs-src/src/documents/development-guidelines/index.html.md",
-		"/Users/mbp/Documents/projects/shortpoint/user-interface/docs-src/src/documents/integration/divider.html.md.eco",
-		"/Users/mbp/Documents/projects/shortpoint/user-interface/src/sass/shortpoint/icon/_core.scss",
-		"/Users/mbp/Documents/projects/shortpoint/user-interface/docs-src/src/documents/development-guidelines/intro-to-shortpoint.html.md",
-		"/Users/mbp/Documents/projects/shortpoint/user-interface/src/js/shortpoints/shortpoint.tooltip.js",
-		"/Users/mbp/Documents/projects/shortpoint/user-interface/examples/sass/_icon.scss",
-		"/Users/mbp/Documents/projects/shortpoint/user-interface/examples/templates/pages/tooltip.ejs",
-		"/Users/mbp/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
-		"/Users/mbp/Documents/projects/shortpoint/user-interface/docs-src/src/partials/shortpoint-definition.html.md.eco"
+		"/Users/mbp/Documents/projects/shortpoint/user-interface/dest/font/FontAwesome.otf"
 	],
 	"find":
 	{
@@ -745,6 +777,18 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"textSize",
+			"controlSize",
+			"isArray",
+			"$borad",
+			"text-color",
+			"border-color",
+			"playground",
+			"4",
+			"i",
+			"app",
+			" type=\"text/javascript\"",
+			":",
 			"shortpoint-alert",
 			"alert",
 			"color",
@@ -860,19 +904,7 @@
 			"shortpoint-toggle-header",
 			"h4",
 			"removeClass",
-			"hasClass",
-			"addClass",
-			".close",
-			".open",
-			"hasClass",
-			"__removeClass",
-			"removeClass",
-			"__addClass",
-			"addClass",
-			"config",
-			"jquery",
-			"\"",
-			"addClass"
+			"hasClass"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -905,8 +937,119 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "www/index.html",
+					"settings":
+					{
+						"buffer_size": 3643,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2696,
+								2696
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 790.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "www/sass/_board.scss",
+					"settings":
+					{
+						"buffer_size": 969,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								320,
+								320
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "www/sass/main.scss",
+					"settings":
+					{
+						"buffer_size": 141,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								66,
+								66
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "www/sass/_platform.scss",
+					"settings":
+					{
+						"buffer_size": 3847,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1258,
+								1696
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 10.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -951,6 +1094,18 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"under",
+				"www/temp-libs/underscore/underscore.js"
+			],
+			[
+				"app.js",
+				"www/js/app.js"
+			],
+			[
+				"index",
+				"www/index.html"
+			],
 			[
 				"core.con",
 				"src/js/shortpoint/core/core.config.js"
@@ -1366,10 +1521,6 @@
 			[
 				"examplealert",
 				"examples-src/src/documents/alert.html.eco"
-			],
-			[
-				"index",
-				"docs/index.html"
 			],
 			[
 				"aler",

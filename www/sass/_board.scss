@@ -1,0 +1,65 @@
+
+// variables
+// ---------
+$board-border-color: blue;
+// $board-border-color: rgba(0, 95, 167, 0.35);
+$board-text-color: #777;
+
+body {
+  color: $board-text-color;
+}
+
+.board {
+  display: inline-block;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  border-top: 1px solid $board-border-color;
+  border-left: 1px solid $board-border-color;
+}
+
+.box {
+
+  float: left;
+
+  .cell {
+    float: left;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-right: 1px solid $board-border-color;
+    border-bottom: 1px solid $board-border-color;
+  }
+}
+
+.board {
+  .row {
+
+    .cell:last-child {
+      border-right: none; 
+    }
+      
+    &:last-child {
+      .cell {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+//
+// Controls
+//
+.controls {
+  margin-top: 20px;
+}
+
+.control {
+  float: left;
+  background-color: $board-border-color;
+  color: white;
+  margin: 0 2px;
+  text-align: center;
+  @include border-radius( 4px );
+}
