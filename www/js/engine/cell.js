@@ -1,7 +1,10 @@
 ﻿var Sudoku;
 (function (Sudoku) {
     var cell = (function () {
-        function cell() {
+        function cell(pX, pY) {
+            this.data = 0;
+            this.x = pX;
+            this.y = pY;
         }
         return cell;
     })();
