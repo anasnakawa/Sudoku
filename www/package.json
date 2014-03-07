@@ -1,0 +1,31 @@
+{
+  "name": "sudoku",
+  "version": "0.0.0",
+  "description": "sudoku web app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anasnakawa/Sudoku.git"
+  },
+  "keywords": [
+    "web",
+    "app",
+    "game",
+    "sudoku",
+    "brain"
+  ],
+  "author": "Anas Nakawa <anas.nakawa@gmail.com> (http://anasnakawa.com/)",
+  "license": "Commercial",
+  "bugs": {
+    "url": "https://github.com/anasnakawa/Sudoku/issues"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-watch": "~0.5.3"
+  }
+}
