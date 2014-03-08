@@ -3,7 +3,8 @@
     var baseGenerator = (function () {
         function baseGenerator() {
         }
-        baseGenerator.prototype.genrate = function () {
+        baseGenerator.prototype.genrate = function (board, level) {
+            return true;
         };
         return baseGenerator;
     })();

@@ -1,42 +1,31 @@
 ﻿module Sudoku {
-    export enum level {
-        EASY
-        , MEDIUM
-        , HARD
-        , EXTREME
-    }
     export class game {
-        constructor() {      
-            this.board = new board();
-            this.prepareSubSquares();
-            this.prepareCells();     
-        }               
         private board: board;
-        private prepareSubSquares() {
-            this.board.subSquares = new Array(9);             
-            for (var s = 0; s < 9; s++) {
-                this.board.subSquares[s] = new subSquare(s);
-            }
+        private level: gameLevel;
+        constructor(pLevel: gameLevel) {
+            this.level = pLevel;
+            this.board = new board();
+            this.board.initialize();
         }
-        private getSubSquare(pX: number, pY: number): subSquare {                   
-            return analyzer.getSubSquare(this.board.subSquares,pX, pY);            
+        public start() {
+            if (!config.generator.genrate(this.board, this.level))
+                throw new Error("The game is unable to please start try again");
+
         }
-        private prepareCells()
-        {
-            this.board.cells  = new Array(9);
-            // rows
-            for (var r = 0; r < 9; r++) {
-                this.board.cells [r] = new Array(9);
-                // columns
-                for (var c = 0; c < 9; c++) {
-                    var eCell = new cell(r, c);
-                    this.getSubSquare(r, c).AddCell(eCell);
-                    this.board.cells [r][c] = eCell;
-                }
-            }
-        }
-        solve()
+        public pause()
         { }
+        public resume()
+        { }
+        public restart()
+        { }
+        public complete() {
+        }
+
+        public solve() {
+            if (!config.solver.solve(this.board))
+                throw new Error("The game is unable to solve !!!");
+
+        }
         hint(pCell: cell) {
 
         }
@@ -44,17 +33,7 @@
         { }
         get(pCell: cell)
         { }
-        start() {
-           
-        }
-        pause()
-        { }
-        resume()
-        { }
-        restart()
-        { }
-        complete() {
-        }
+
         on(eventType, handler)
         { }
         onRestart(handler)

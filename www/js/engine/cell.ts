@@ -12,7 +12,7 @@
         }
     }
     export enum cellType {
-        GENERATED
+        SYSTEM
         , USER
     }
 }

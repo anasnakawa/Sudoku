@@ -1,8 +1,8 @@
 ﻿module Sudoku {
-    export class baseGenerator {
+    export class baseSolver {
         constructor() {
         }
-        genrate(board: board, level: gameLevel): boolean {
+        solve(board: board): boolean {
             return true;
         }
     }

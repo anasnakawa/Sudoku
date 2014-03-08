@@ -1,39 +1,24 @@
 ﻿module Sudoku {
     export class analyzer {
-        private static subSquareIndex: number[][] =
-        [
-            [0, 0, 0, 1, 1, 1, 2, 2, 2],
-            [0, 0, 0, 1, 1, 1, 2, 2, 2],
-            [0, 0, 0, 1, 1, 1, 2, 2, 2],
-            [3, 3, 3, 4, 4, 4, 5, 5, 5],
-            [3, 3, 3, 4, 4, 4, 5, 5, 5],
-            [3, 3, 3, 4, 4, 4, 5, 5, 5],
-            [6, 6, 6, 7, 7, 7, 8, 8, 8],
-            [6, 6, 6, 7, 7, 7, 8, 8, 8],
-            [6, 6, 6, 7, 7, 7, 8, 8, 8]
-        ];
-        public static getSubSquare(subSquares: subSquare[], pX: number, pY: number): subSquare {
-            return subSquares[analyzer.subSquareIndex[pX][pY]];
-        }
         constructor() {
         }
-        public isInRow(board: board, targetCell: cell) {
+        static isInRow(board: board, targetCell: cell) {
             for (var row = 0; row < 9; row++) {
-                if (board.cells[targetCell.y][row].data == targetCell.data)
+                if (board.cell(row,targetCell.y) == targetCell.data)
                     return true;
             }
             return false;
         }
 
-        public isInColumn(board: board, targetCell: cell) {
+        static isInColumn(board: board, targetCell: cell) {
             for (var column = 0; column < 9; column++) {
-                if (board.cells[column][targetCell.x].data == targetCell.data)
+                if (board.cell(targetCell.x,column) == targetCell.data)
                     return true;
             }
             return false;
         }
-        public isInSquare(board: board, targetCell: cell) {
-            var square = analyzer.getSubSquare(board.subSquares, targetCell.x, targetCell.y);
+        static isInSquare(board: board, targetCell: cell) {
+            var square = board.getSubSquare( targetCell.x, targetCell.y);
             if (square.cells != null) {
                 for (var c = 0; c < square.cells.length; c++) {
                     if (square.cells[c].data == targetCell.data)
@@ -42,16 +27,16 @@
             }
             return false;
         }
-        public getPossibleValues(board: board, pX: number, pY: number):number[] {
+        static getPossibleValues(board: board, pX: number, pY: number):number[] {
             var possibleValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
             // Remove used numbers in the vertical direction
             for (var c = 0; c < 9; c++)
-                possibleValues[board.cells[c][pX].data] = 0;
+                possibleValues[board.cell(pX, c)] = 0;
             // Remove used numbers in the horizontal direction
             for (var r = 0; r < 9; r++)
-                possibleValues[board.cells[pY][r].data] = 0;
+                possibleValues[board.cell(r,pY)] = 0;
             // Remove used numbers in the sub square.
-            var square = analyzer.getSubSquare(board.subSquares, pX, pY);
+            var square = board.getSubSquare(pX, pY);
             for (var c = 0; c < square.cells.length; c++) {
                 possibleValues[square.cells[c].data] = 0
             }

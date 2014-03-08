@@ -10,7 +10,7 @@
     })();
     Sudoku.cell = cell;
     (function (cellType) {
-        cellType[cellType["GENERATED"] = 0] = "GENERATED";
+        cellType[cellType["SYSTEM"] = 0] = "SYSTEM";
         cellType[cellType["USER"] = 1] = "USER";
     })(Sudoku.cellType || (Sudoku.cellType = {}));
     var cellType = Sudoku.cellType;
