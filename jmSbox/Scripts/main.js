@@ -29,7 +29,7 @@ $(document).ready(function () {
                 var cell = cells[r][c];
                 cell.synchData = ko.computed({
                     read: function () {
-                        return this.data;
+                        return this.data == 0 ? "" : this.data;
                     },
                     write: function (value) {
                         game.set(this, value);
