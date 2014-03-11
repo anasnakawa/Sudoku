@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
 
 
     <script src="Scripts/jquery-2.1.0.js"></script>
@@ -35,16 +35,16 @@
         <button type="button" class="btn btn-success" data-bind="click:solveSudoku">solve </button>
         <div class="container" data-bind="foreach: cells">
             <div class="row" data-bind="foreach: $data">
-                <div class="col-sm-1"   >
+                <div class="col-md-1">
 
                     <!-- ko if:  $data.type== 0 && $data.synchData()!='' -->
-                    <input type="text" data-bind="value: $data.synchData" class="form-control" disabled >
+                    <input style="width: 100px; height: 100px" type="text" data-bind="value: $data.synchData" class="form-control" disabled>
                     <!-- /ko -->
                     <!-- ko if :  $data.type== 1  ||  $data.synchData()=='' -->
-                    <input type="text" data-bind="value: $data.synchData" class="form-control bg-info"  >
-                   
+                    <input style="width: 100px; height: 100px; "  type="text" data-bind="value: $data.synchData" class="form-control bg-info">
+
                     <!-- /ko -->
-                  
+
                 </div>
             </div>
 
