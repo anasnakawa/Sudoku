@@ -7,15 +7,16 @@
             var succeed = false;
             var game: string;
             var cellValue: number;
-            if (this[level] != null && this[level].length > 0) {
-                var randomIndex = Math.floor(Math.random() * this[level].length);
-                game = this[level][randomIndex];
+            var levelStr = gameLevel[level];
+            if (this[levelStr] != null && this[levelStr].length > 0) {
+                var randomIndex = Math.floor(Math.random() * this[levelStr].length);
+                game = this[levelStr][randomIndex];
                 //TODO make some shuffle 
                 if (game.length == 81) {
                     for (var r = 0; r < 9; r++) {
                         for (var c = 0; c < 9; c++) {
                             cellValue = parseInt(game.charAt((r * 9) + c));
-                            if (this.IsNumeric(cellValue) && cellValue>0) {
+                            if (this.IsNumeric(cellValue) && cellValue >=0) {
                                 board.setSystemCell(r, c, cellValue);
                             }
                             else
@@ -23,13 +24,14 @@
 
                         }
                     }
+                    succeed = true;
                 }
             }
             super.genrate(board, level);
             return succeed;
         }
         private IsNumeric(strChar) {  //  check for valid numeric strings
-            var strValidChars = "123456789";
+            var strValidChars = "0123456789";
             var blnResult = true;
             if (strChar.length === 0) {
                 return false;

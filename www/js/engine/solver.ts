@@ -5,11 +5,11 @@
         }
         public solve(board: board): boolean {
             var succeed = false;
-            succeed = this.SolvebruteForce(board);
+            succeed = this.solvebruteForce(board);
             super.solve(board);
             return succeed;
         }
-        public SolvebruteForce(board: board): boolean{
+        private solvebruteForce(board: board): boolean{
 			// Find untouched location with most information            
 			var colp = 0;
             var rowp = 0;
@@ -47,13 +47,13 @@
 			for(var i = 1; i < 10; i++)
 			{
                 if (mValues[i] != 0) {
-                    board.cell(rowp, colp, mValues[i]) ;
-                    if (this.SolvebruteForce(board))
+                    board.setCell(rowp, colp, mValues[i]) ;
+                    if (this.solvebruteForce(board))
                         return true;
                 }
             }            
             // Restore to original state.
-            board.cell(rowp, colp, 0);          
+            board.setCell(rowp, colp, 0);          
             return false;
         }
 

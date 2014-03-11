@@ -3,6 +3,7 @@
     var cell = (function () {
         function cell(pX, pY) {
             this.data = 0;
+            this.type = 1 /* USER */;
             this.x = pX;
             this.y = pY;
         }

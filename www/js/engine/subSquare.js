@@ -3,9 +3,10 @@
     var subSquare = (function () {
         function subSquare(squareId) {
             this.id = squareId;
+            this.cells = new Array(0);
         }
         subSquare.prototype.AddCell = function (pCell) {
-            if (this.cells.length < 9) {
+            if (this.cells.length <= 9) {
                 pCell.square = this;
                 this.cells.push(pCell);
             }

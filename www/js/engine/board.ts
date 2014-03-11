@@ -2,8 +2,7 @@
     export class board {
         //TODO movesHistory
         public subSquares: subSquare[];
-        private cells: cell[][];
-        private solCells: number[][];
+
         private static subSquareIndex: number[][] =
         [
             [0, 0, 0, 1, 1, 1, 2, 2, 2],
@@ -16,6 +15,8 @@
             [6, 6, 6, 7, 7, 7, 8, 8, 8],
             [6, 6, 6, 7, 7, 7, 8, 8, 8]
         ];
+        public cells: cell[][];
+        public solCells: number[][];
         constructor() {
         }
         public initialize() {
@@ -40,10 +41,12 @@
             else {
                 return this.getCell(pX, pY).data;
             }
-        }      
+        }
         public setSystemCell(pX: number, pY: number, data: number) {
-            this.cells[pX][pY].type = cellType.SYSTEM;
-            this.cells[pX][pY].data = data;
+            if (data > 0 && data < 10) {
+                this.cells[pX][pY].type = cellType.SYSTEM;
+                this.cells[pX][pY].data = data;
+            }
         }
         public getSubSquare(pX: number, pY: number): subSquare {
             return this.subSquares[board.subSquareIndex[pX][pY]];
@@ -52,13 +55,11 @@
         public getCell(pX: number, pY: number) {
             return this.cells[pX][pY];
         }
-        public setCell(pX: number, pY: number, data: number): boolean {
-            if (this.cells[pX][pY].type != cellType.SYSTEM) {
+        public setCell(pX: number, pY: number, data: number) {
+            if (data >=0 && data < 10) {
                 this.cells[pX][pY].type = cellType.USER;
                 this.cells[pX][pY].data = data;
-                return true;
             }
-            return false;
         }
         private prepareSubSquares() {
             this.subSquares = new Array(9);

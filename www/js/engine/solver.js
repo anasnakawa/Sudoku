@@ -13,11 +13,11 @@ var Sudoku;
         }
         solver.prototype.solve = function (board) {
             var succeed = false;
-            succeed = this.SolvebruteForce(board);
+            succeed = this.solvebruteForce(board);
             _super.prototype.solve.call(this, board);
             return succeed;
         };
-        solver.prototype.SolvebruteForce = function (board) {
+        solver.prototype.solvebruteForce = function (board) {
             // Find untouched location with most information
             var colp = 0;
             var rowp = 0;
@@ -55,14 +55,14 @@ var Sudoku;
 
             for (var i = 1; i < 10; i++) {
                 if (mValues[i] != 0) {
-                    board.cell(rowp, colp, mValues[i]);
-                    if (this.SolvebruteForce(board))
+                    board.setCell(rowp, colp, mValues[i]);
+                    if (this.solvebruteForce(board))
                         return true;
                 }
             }
 
             // Restore to original state.
-            board.cell(rowp, colp, 0);
+            board.setCell(rowp, colp, 0);
             return false;
         };
         return solver;

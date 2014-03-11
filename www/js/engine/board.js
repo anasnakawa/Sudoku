@@ -25,8 +25,10 @@
             }
         };
         board.prototype.setSystemCell = function (pX, pY, data) {
-            this.cells[pX][pY].type = 0 /* SYSTEM */;
-            this.cells[pX][pY].data = data;
+            if (data > 0 && data < 10) {
+                this.cells[pX][pY].type = 0 /* SYSTEM */;
+                this.cells[pX][pY].data = data;
+            }
         };
         board.prototype.getSubSquare = function (pX, pY) {
             return this.subSquares[board.subSquareIndex[pX][pY]];
@@ -35,12 +37,10 @@
             return this.cells[pX][pY];
         };
         board.prototype.setCell = function (pX, pY, data) {
-            if (this.cells[pX][pY].type != 0 /* SYSTEM */) {
+            if (data >= 0 && data < 10) {
                 this.cells[pX][pY].type = 1 /* USER */;
                 this.cells[pX][pY].data = data;
-                return true;
             }
-            return false;
         };
         board.prototype.prepareSubSquares = function () {
             this.subSquares = new Array(9);
