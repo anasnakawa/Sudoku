@@ -1,20 +1,12 @@
-﻿var __extends = this.__extends || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    __.prototype = b.prototype;
-    d.prototype = new __();
-};
-var Sudoku;
+﻿var Sudoku;
 (function (Sudoku) {
-    var solver = (function (_super) {
-        __extends(solver, _super);
+    var solver = (function () {
         function solver() {
-            _super.call(this);
         }
         solver.prototype.solve = function (board) {
             var succeed = false;
             succeed = this.solvebruteForce(board);
-            _super.prototype.solve.call(this, board);
+
             return succeed;
         };
         solver.prototype.solvebruteForce = function (board) {
@@ -66,7 +58,7 @@ var Sudoku;
             return false;
         };
         return solver;
-    })(Sudoku.baseSolver);
+    })();
     Sudoku.solver = solver;
 })(Sudoku || (Sudoku = {}));
 //# sourceMappingURL=solver.js.map
