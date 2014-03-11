@@ -35,7 +35,7 @@
         <button type="button" class="btn btn-success" data-bind="click:solveSudoku">solve </button>
         <div class="container" data-bind="foreach: cells">
             <div class="row" data-bind="foreach: $data">
-                <div class="col-md-1">
+                <div class="col-sm-1">
 
                     <!-- ko if:  $data.type== 0 && $data.synchData()!='' -->
                     <input style="width: 100px; height: 100px" type="text" data-bind="value: $data.synchData" class="form-control" disabled>
