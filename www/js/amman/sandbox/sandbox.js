@@ -2,22 +2,32 @@
  * amman sandbox
  */
 
-(function( core ) { 'use strict';
+(function( amman ) { 'use strict';
+
+  // base libs
+  amman.$ = amman.core.$;
+  amman.ko = amman.core.ko;
+  amman._ = amman.core._;
 
   // util
-  amman.util = core.util;
+  amman.util = amman.core.util;
+
+  // module system
+  amman.registerModule = amman.core.registerModule;
+  amman.modules = amman.core.modules;
+  amman.startModule = amman.core.startModule;
 
   // config
-  amman.config = core.config;
+  amman.config = amman.core.config;
 
   // communication
-  amman.PubSub = core.PubSub;
-  amman.pubsub = core.pubsub;
+  amman.PubSub = amman.core.PubSub;
+  amman.pubsub = amman.core.pubsub;
 
   // logging
-  amman.log = core.log.normal;
-  amman.error = core.log.error;
-  amman.info = core.log.info;
-  amman.warn = core.log.warn;
+  amman.log = amman.core.log;
+  amman.error = amman.core.error;
+  amman.info = amman.core.info;
+  amman.warn = amman.core.warn;
 
-})( this.amman.core );
+})( this.amman );

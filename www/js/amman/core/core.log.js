@@ -42,11 +42,9 @@
     console.error.apply( console, arguments );
   }
 
-  core.log = {
-      normal: log
-    , info  : info
-    , warn  : warn
-    , error : error
-  }
+  core.log = log;
+  core.info = info;
+  core.warn = warn;
+  core.error = error;
 
 })( this.amman.core );

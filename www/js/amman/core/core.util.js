@@ -38,8 +38,12 @@
 
   // other utils
   // -----------
+  , defer = function( callback ) {
+    setTimeout( callback, 0 );
+  }
+
   , deferException = function( message ) {
-    setTimeout(function() {
+    defer(function() {
       throw new Error( message );
     }, 0 );
   }
@@ -96,19 +100,22 @@
       , hash    : isHash
       , numeric : isNumeric
     }
+
+    , exception: deferException
+    , defer: defer
   });
 
   // all is.js methods, will be available
   // as is.not.method, for negating purposes
   core.util.is.not = {};
   // negating all methods
-  for( var fn in is ) {
+  for( var fn in core.util.is ) {
     // skipping non-functions
-    if( is.hasOwnProperty( fn ) && isFunction(is[fn]) ) {
+    if( core.util.is.hasOwnProperty( fn ) && isFunction( core.util.is[ fn ] ) ) {
       // create closure to keep reference
       (function( fn ) {
-        is.not[ fn ] = function() {
-          return !is[ fn ].apply( this, arguments );
+        core.util.is.not[ fn ] = function() {
+          return !core.util.is[ fn ].apply( this, arguments );
         }        
       })(fn)
     }
