@@ -30,8 +30,6 @@
       util.extend( this.options, options );
 
       this.create();
-      ko.applyBindings( this, this.element.get ? this.element.get( 0 ) : this.element );
-
       this.init();
     }
 

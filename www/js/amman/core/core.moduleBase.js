@@ -16,7 +16,6 @@
   ModuleBase.prototype.constructor = ModuleBase;
 
   ModuleBase.prototype.create = function() {
-    $( this.element ).attr( 'data-module', this.moduleName );
     core.log( 'ModuleBase create' );
   };
   ModuleBase.prototype.init = function() {

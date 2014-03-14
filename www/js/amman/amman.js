@@ -18125,7 +18125,7 @@ if ( typeof window === "object" && typeof window.document === "object" ) {
 
 (function( core, _, $ ) { 'use strict';
 
-  var id = 100
+  var id = 0
 
   // type checking
   // -------------
@@ -18195,8 +18195,11 @@ if ( typeof window === "object" && typeof window.document === "object" ) {
     });
   }
 
-  , getNextID = function() {
-    return ++id;
+  , getNextID = function( prefix ) {
+    if( prefix == null ) {
+      return ++id;
+    }
+    return prefix + ( ++id );
   }
 
   // basically all underscore methods
@@ -18224,6 +18227,9 @@ if ( typeof window === "object" && typeof window.document === "object" ) {
 
     , exception: deferException
     , defer: defer
+    , id: {
+      next: getNextID
+    }
   });
 
   // all is.js methods, will be available
@@ -18369,8 +18375,6 @@ if ( typeof window === "object" && typeof window.document === "object" ) {
       util.extend( this.options, options );
 
       this.create();
-      ko.applyBindings( this, this.element.get ? this.element.get( 0 ) : this.element );
-
       this.init();
     }
 
@@ -18408,7 +18412,6 @@ if ( typeof window === "object" && typeof window.document === "object" ) {
   ModuleBase.prototype.constructor = ModuleBase;
 
   ModuleBase.prototype.create = function() {
-    $( this.element ).attr( 'data-module', this.moduleName );
     core.log( 'ModuleBase create' );
   };
   ModuleBase.prototype.init = function() {
@@ -18438,10 +18441,23 @@ if ( typeof window === "object" && typeof window.document === "object" ) {
       return;
     }
 
-    var instance;
-    util.defer( function() {
+    var instance
+    , moduleId = util.id.next( moduleName + '_' );
+
+    options.$module = {
+      id: moduleId
+    };
+
+    try {
       instance = new core.modules[ moduleName ]( element, options );
-    });
+      $.data( element, 'module', instance );
+      ko.$root = ko.$root || {};
+      ko.$root[ moduleId ] = instance;
+      $( element ).attr( 'data-bind', 'with: $root.{moduleId}'.replace( /{moduleId}/, moduleId ) );
+      ko.applyBindings( ko.$root, element.get ? element.get( 0 ) : element );
+    } catch( e ) {
+      core.error( e );
+    }
 
     return instance;
   }

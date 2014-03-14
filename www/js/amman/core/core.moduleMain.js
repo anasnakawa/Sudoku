@@ -18,10 +18,23 @@
       return;
     }
 
-    var instance;
-    util.defer( function() {
+    var instance
+    , moduleId = util.id.next( moduleName + '_' );
+
+    options.$module = {
+      id: moduleId
+    };
+
+    try {
       instance = new core.modules[ moduleName ]( element, options );
-    });
+      $.data( element, 'module', instance );
+      ko.$root = ko.$root || {};
+      ko.$root[ moduleId ] = instance;
+      $( element ).attr( 'data-bind', 'with: $root.{moduleId}'.replace( /{moduleId}/, moduleId ) );
+      ko.applyBindings( ko.$root, element.get ? element.get( 0 ) : element );
+    } catch( e ) {
+      core.error( e );
+    }
 
     return instance;
   }

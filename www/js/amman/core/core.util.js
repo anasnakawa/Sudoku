@@ -4,7 +4,7 @@
 
 (function( core, _, $ ) { 'use strict';
 
-  var id = 100
+  var id = 0
 
   // type checking
   // -------------
@@ -74,8 +74,11 @@
     });
   }
 
-  , getNextID = function() {
-    return ++id;
+  , getNextID = function( prefix ) {
+    if( prefix == null ) {
+      return ++id;
+    }
+    return prefix + ( ++id );
   }
 
   // basically all underscore methods
@@ -103,6 +106,9 @@
 
     , exception: deferException
     , defer: defer
+    , id: {
+      next: getNextID
+    }
   });
 
   // all is.js methods, will be available
