@@ -39,7 +39,6 @@
             }
             else
                 return false;
-
         }
         get(pCell: cell):any
         {

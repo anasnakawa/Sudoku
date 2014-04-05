@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <!--
     Licensed to the Apache Software Foundation (ASF) under one
     or more contributor license agreements.  See the NOTICE file
@@ -30,13 +30,16 @@
   <title>Hello World</title>
 </head>
 <body>
+
+    <button type="button" class="btn btn-success" data-bind="click:board.solveSudoku">solve </button>
+
   <div class="app">
     <div class="playground">
       <div class="board clearfix" id="board">
-        <!-- ko foreach: ko.utils.range(1, 9) -->
-          <div class="box clearfix" data-bind="attr: { class: 'box box-' + $data }">
-            <!-- ko foreach: ko.utils.range(1, 9) -->
-            <div data-bind="text: $data, attr: { class: 'cell cell-' + $data }"></div>
+        <!-- ko foreach: board.cells -->
+          <div class="box clearfix" data-bind="attr: { class: 'box box-' + $data.box }">
+            <!-- ko foreach: $data -->
+              <div data-bind="click:$root.board.selectCell,text: $data.data, attr: { class: 'cell cell-' + $data.data() }"></div>
             <!-- /ko -->
           </div>
         <!-- /ko -->
@@ -44,11 +47,14 @@
 
       <div class="controls row">
         <!-- ko foreach: ko.utils.range(1, 9) -->
-        <div data-bind="text: $data, attr: { class: 'control control-' + $data }"></div>
+          <div data-bind="click:$root.board.fillCell,text: $data, attr: { class: 'control control-' + $data }"></div>
         <!-- /ko -->
       </div>
+       
+     
     </div>
   </div>
+  
   <script src="phonegap.js"></script>
   <script src="js/index.js"></script>
   <script>
@@ -57,7 +63,22 @@
 
   <script src="bower_components/knockout.js/knockout.debug.js"></script>
   <script src="bower_components/jquery/jquery.js"></script>
-  <script src="bower_components/lodash/lodash.underscore.js"></script>
+  <script src="bower_components/lodash/lodash.underscore.js"></script>  
+  <!--TODO: use one refrence for all sudoku engine files -->  
+  <script src="js/engine/gameLevel.js"></script>
+  <script src="js/engine/baseGenerator.js"></script>
+  <script src="js/engine/baseSolver.js"></script>
+  <script src="js/engine/cell.js"></script>
+  <script src="js/engine/subSquare.js"></script>
+  <script src="js/engine/board.js"></script>
+  <script src="js/engine/sudUtils.js"></script>
+  <script src="js/engine/fixedGenerator.js"></script>
+  <script src="js/engine/solver.js"></script>
+  <script src="js/engine/analyzer.js"></script>
+  <script src="js/engine/config.js"></script>
+  <script src="js/engine/game.js"></script>
+  <script src="js/engine/sudoku.js"></script>
+
   <script src="js/app.js"></script>
   <script>
   function updateCss( styles ) {

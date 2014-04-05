@@ -1,12 +1,12 @@
 ﻿module Sudoku {
-    export class solver extends baseSolver {
+    export class solver implements baseSolver {
         constructor() {
-            super();
+            
         }
         public solve(board: board): boolean {
             var succeed = false;
             succeed = this.solvebruteForce(board);
-            super.solve(board);
+           
             return succeed;
         }
         private solvebruteForce(board: board): boolean{

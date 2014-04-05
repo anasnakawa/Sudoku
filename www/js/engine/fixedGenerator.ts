@@ -1,7 +1,7 @@
 ﻿module Sudoku {
-    export class fixedGenerator extends baseGenerator {
+    export class fixedGenerator implements baseGenerator {
         constructor() {
-            super();
+            
         }
         genrate(board: board, level: gameLevel): boolean {
             var succeed = false;
@@ -27,7 +27,7 @@
                     succeed = true;
                 }
             }
-            super.genrate(board, level);
+          
             return succeed;
         }
         private IsNumeric(strChar) {  //  check for valid numeric strings

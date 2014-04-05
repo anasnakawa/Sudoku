@@ -1,15 +1,7 @@
-﻿var __extends = this.__extends || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    __.prototype = b.prototype;
-    d.prototype = new __();
-};
-var Sudoku;
+﻿var Sudoku;
 (function (Sudoku) {
-    var fixedGenerator = (function (_super) {
-        __extends(fixedGenerator, _super);
+    var fixedGenerator = (function () {
         function fixedGenerator() {
-            _super.call(this);
             //private shuffle(matrix) {
             //    // create the root sudoku solution. this produces the following
             //    // sudoku:
@@ -228,7 +220,7 @@ var Sudoku;
                     succeed = true;
                 }
             }
-            _super.prototype.genrate.call(this, board, level);
+
             return succeed;
         };
         fixedGenerator.prototype.IsNumeric = function (strChar) {
@@ -243,7 +235,7 @@ var Sudoku;
             return blnResult;
         };
         return fixedGenerator;
-    })(Sudoku.baseGenerator);
+    })();
     Sudoku.fixedGenerator = fixedGenerator;
 })(Sudoku || (Sudoku = {}));
 //# sourceMappingURL=fixedGenerator.js.map

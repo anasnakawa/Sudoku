@@ -1,10 +1,6 @@
 ﻿module Sudoku {
-    export class baseSolver {
-        constructor() {
-        }
-        solve(board: board): boolean {
-            return true;
-        }
+    export interface baseSolver {
+        solve(board: board): boolean;
     }
 
 }
