@@ -32,7 +32,7 @@
 
         }
         set(pCell: cell, value: number): boolean {
-            var targetCell = this.board.getCell(pCell.x, pCell.y);
+            var targetCell = this.board.getCell(pCell.x, pCell.y); 
             if (targetCell.type != cellType.SYSTEM) {
                 this.board.setCell(pCell.x, pCell.y, value);
                 return true;

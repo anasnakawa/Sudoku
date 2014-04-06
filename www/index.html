@@ -30,16 +30,14 @@
   <title>Hello World</title>
 </head>
 <body>
-
-    <button type="button" class="btn btn-success" data-bind="click:board.solveSudoku">solve </button>
-
-  <div class="app">
+  <div class="app" id="app">
+    <button type="button" class="btn btn-success" data-bind="click:solveSudoku">solve </button>
     <div class="playground">
       <div class="board clearfix" id="board">
-        <!-- ko foreach: board.cells -->
+        <!-- ko foreach: cells -->
           <div class="box clearfix" data-bind="attr: { class: 'box box-' + $data.box }">
             <!-- ko foreach: $data -->
-              <div data-bind="click:$root.board.selectCell,text: $data.data, attr: { class: 'cell cell-' + $data.data() }"></div>
+              <div data-bind="click:function(cell){$parents[1].selectCell(cell);},text: $data.data, attr: { class: 'cell cell-' + $data.data() }"></div>
             <!-- /ko -->
           </div>
         <!-- /ko -->
@@ -47,7 +45,7 @@
 
       <div class="controls row">
         <!-- ko foreach: ko.utils.range(1, 9) -->
-          <div data-bind="click:$root.board.fillCell,text: $data, attr: { class: 'control control-' + $data }"></div>
+          <div data-bind="click:function(value){$parent.fillCell(value);},text: $data, attr: { class: 'control control-' + $data }"></div>
         <!-- /ko -->
       </div>
        
@@ -64,6 +62,7 @@
   <script src="bower_components/knockout.js/knockout.debug.js"></script>
   <script src="bower_components/jquery/jquery.js"></script>
   <script src="bower_components/lodash/lodash.underscore.js"></script>  
+  <script src="js/amman/amman.js"></script>
   <!--TODO: use one refrence for all sudoku engine files -->  
   <script src="js/engine/gameLevel.js"></script>
   <script src="js/engine/baseGenerator.js"></script>
@@ -109,8 +108,8 @@
 
   calculate();
   document.onresize = updateCss;
-
-  ko.applyBindings( app );
+  amman.startModule('app', '#app', {});
+  //ko.applyBindings( app );
   </script>
 </body>
 </html>
