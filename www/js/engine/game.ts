@@ -16,6 +16,9 @@
         {
             return sudUtils.getShallowCells(this.board.cells);
         }
+        public getBoardBoxes(): any {
+            return sudUtils.getShallowBoxes(this.board.subSquares);
+        }
         public pause()
         { }
         public resume()
