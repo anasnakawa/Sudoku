@@ -24,12 +24,18 @@
   <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See 
   https://issues.apache.org/jira/browse/CB-4323 -->
   <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
   <link rel="stylesheet" type="text/css" href="css/index.css" />
   <link rel="stylesheet" type="text/css" href="css/main.css" />
   <script src="bower_components/modernizr/modernizr.js"></script>
   <title>Hello World</title>
 </head>
 <body>
+  <!-- <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      ...
+    </div>
+  </nav> -->
   <div class="app" id="app">
     <button type="button" class="btn btn-success" data-bind="click:solveSudoku">solve </button>
     <div class="playground">
@@ -37,7 +43,7 @@
         <!-- ko foreach: cells -->
           <div class="box clearfix" data-bind="attr: { class: 'box box-' + $data.box }">
             <!-- ko foreach: $data -->
-              <div data-bind="click:function(cell){$parents[1].selectCell(cell);},text: $data.data, attr: { class: 'cell cell-' + $data.data() }"></div>
+              <div data-bind="click: function( cell ) { $parents[ 1 ].selectCell( cell ); },text: $data.data, attr: { class: 'cell cell-' + $data.data() }"></div>
             <!-- /ko -->
           </div>
         <!-- /ko -->
@@ -45,7 +51,7 @@
 
       <div class="controls row">
         <!-- ko foreach: ko.utils.range(1, 9) -->
-          <div data-bind="click:function(value){$parent.fillCell(value);},text: $data, attr: { class: 'control control-' + $data }"></div>
+          <div data-bind="click: function( value ) { $parent.fillCell( value ); }, text: $data, attr: { class: 'control control-' + $data }"></div>
         <!-- /ko -->
       </div>
        
@@ -59,9 +65,9 @@
     platform.initialize();
   </script>
 
-  <script src="bower_components/knockout.js/knockout.debug.js"></script>
   <script src="bower_components/jquery/jquery.js"></script>
-  <script src="bower_components/lodash/lodash.underscore.js"></script>  
+  <script src="bower_components/knockout.js/knockout.debug.js"></script>
+  <script src="bower_components/lodash/dist/lodash.underscore.js"></script>  
   <script src="js/amman/amman.js"></script>
   <!--TODO: use one refrence for all sudoku engine files -->  
   <script src="js/engine/gameLevel.js"></script>
@@ -94,7 +100,7 @@
     , css = [ 
         ''
       , '.board { width: {boardSize}px; }'.replace( /{boardSize}/, ( size * 9 ) - 9 )
-      , '.box { width: {boxSize}px; }'.replace( /{boxSize}/, ( size * 3 ) - 3 )
+      , '.box { width: {boxSize}px; }'.replace( /{boxSize}/, ( size * 3 ) - 4 )
       , '.box .cell { width: {size}px; height: {size}px; line-height: {size}px; font-size: {text}px; }'.replace( /{size}/g, size - 2 ).replace( /{text}/g, ( size - 2 ) / 2 )
       , '.control { width: {size}px; height: {size}px; line-height: {size}px; font-size: {text}px; }'.replace( /{size}/g, size - 4 ).replace( /{text}/, ( size - 4 ) / 2 )
       , ''
