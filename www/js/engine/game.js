@@ -13,6 +13,9 @@
         game.prototype.getBoard = function () {
             return Sudoku.sudUtils.getShallowCells(this.board.cells);
         };
+        game.prototype.getBoardBoxes = function () {
+            return Sudoku.sudUtils.getShallowBoxes(this.board.subSquares);
+        };
         game.prototype.pause = function () {
         };
         game.prototype.resume = function () {

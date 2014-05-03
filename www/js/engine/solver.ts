@@ -18,7 +18,7 @@
 
             for (var row = 0; row < 9; row++)
 			{
-                for (var col = 0; col < 9; col++)
+                for (var col = 0; col < 9; col++) 
 				{
                     // Is this spot unused?
                     if (board.cell(row, col) == 0) {

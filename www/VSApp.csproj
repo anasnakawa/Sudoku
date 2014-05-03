@@ -329,6 +329,8 @@
     <TypeScriptCompile Include="js\engine\board.ts" />
     <TypeScriptCompile Include="js\engine\cell.ts" />
     <TypeScriptCompile Include="js\engine\config.ts" />
+    <TypeScriptCompile Include="js\engine\generator.ts" />
+    <TypeScriptCompile Include="js\engine\fixedSolver.ts" />
     <TypeScriptCompile Include="js\engine\fixedGenerator.ts" />
     <TypeScriptCompile Include="js\engine\game.ts" />
     <TypeScriptCompile Include="js\engine\gameLevel.ts" />
@@ -339,6 +341,15 @@
     <TypeScriptCompile Include="js\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="js\typings\knockout.mapping\knockout.mapping.d.ts" />
     <TypeScriptCompile Include="js\typings\knockout\knockout.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="web.config" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

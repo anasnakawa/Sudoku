@@ -16,6 +16,20 @@
             }
             return clonedCells;
         };
+        sudUtils.getShallowBoxes = function (subSquares) {
+            var clonedBoxes = new Array(9);
+
+            for (var b = 0; b < 9; b++) {
+                clonedBoxes[b] = new Array(9);
+
+                for (var c = 0; c < 9; c++) {
+                    var cell = subSquares[b].cells[c];
+                    clonedBoxes[b][c] = sudUtils.getShallowCell(cell);
+                }
+            }
+            return clonedBoxes;
+        };
+
         sudUtils.getShallowCell = function (cell) {
             return {
                 x: cell.x,
