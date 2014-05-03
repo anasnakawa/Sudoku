@@ -3,7 +3,9 @@
         public x: number;
         public y: number;
         public square: subSquare;
-        public data: number=0;
+        public data: number = 0;
+        public orignalData: number = 0;
+        public solutionData: number = 0;
         public type: cellType = cellType.USER;         
         constructor(pX: number, pY: number) {
             this.x = pX;

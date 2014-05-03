@@ -4,7 +4,7 @@
         function config() {
         }
         config.generator = new Sudoku.fixedGenerator();
-        config.solver = new Sudoku.solver();
+        config.solver = config.generator.getSolver();
         return config;
     })();
     Sudoku.config = config;
