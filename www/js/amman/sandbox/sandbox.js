@@ -29,9 +29,9 @@
   amman.Signal      = core.Signal;
   amman.PubSub      = core.PubSub;
   amman.pubsub      = core.pubsub;
-  amman.publish     = core.pubsub.publish;
-  amman.subscribe   = core.pubsub.subscribe;
-  amman.unsubscribe = core.pubsub.unsubscribe;
+  amman.publish     = util.fn.bind( core.pubsub.publish, amman.pubsub );
+  amman.subscribe   = util.fn.bind( core.pubsub.subscribe, amman.pubsub );
+  amman.unsubscribe = util.fn.bind( core.pubsub.unsubscribe, amman.pubsub );
 
   // logging
   amman.log   = core.log;

@@ -18,7 +18,8 @@
    */
 
   function Signal() {
-    return ko.observable();
+    this._signal = ko.observable();
+    return this;
   }
 
 
@@ -29,9 +30,10 @@
    * @api public
    */
 
-  ko.observable.prototype.dispatch = function( payload ) {
-    this( payload );
-  }
+  Signal.prototype.dispatch = function( payload ) {
+    this._signal( payload );
+  };
+
 
   /**
    * listen to signal updates ( subscribe )
@@ -42,12 +44,11 @@
    * @api public
    */
 
-  ko.observable.prototype.listen = function( handler, context ) {
-    var instance = this.subscribe( handler, context );
+  Signal.prototype.listen = function( handler, context ) {
+    var instance = this._signal.subscribe( handler, context );
     instance.unlisten = instance.dispose;
     return instance;
-  }
-
+  };
   
   /**
    * `expose` Signals

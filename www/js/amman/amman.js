@@ -18347,7 +18347,8 @@ if ( typeof window === "object" && typeof window.document === "object" ) {
    */
 
   function Signal() {
-    return ko.observable();
+    this._signal = ko.observable();
+    return this;
   }
 
 
@@ -18358,9 +18359,10 @@ if ( typeof window === "object" && typeof window.document === "object" ) {
    * @api public
    */
 
-  ko.observable.prototype.dispatch = function( payload ) {
-    this( payload );
-  }
+  Signal.prototype.dispatch = function( payload ) {
+    this._signal( payload );
+  };
+
 
   /**
    * listen to signal updates ( subscribe )
@@ -18371,12 +18373,11 @@ if ( typeof window === "object" && typeof window.document === "object" ) {
    * @api public
    */
 
-  ko.observable.prototype.listen = function( handler, context ) {
-    var instance = this.subscribe( handler, context );
+  Signal.prototype.listen = function( handler, context ) {
+    var instance = this._signal.subscribe( handler, context );
     instance.unlisten = instance.dispose;
     return instance;
-  }
-
+  };
   
   /**
    * `expose` Signals
@@ -18555,9 +18556,9 @@ if ( typeof window === "object" && typeof window.document === "object" ) {
   amman.Signal      = core.Signal;
   amman.PubSub      = core.PubSub;
   amman.pubsub      = core.pubsub;
-  amman.publish     = core.pubsub.publish;
-  amman.subscribe   = core.pubsub.subscribe;
-  amman.unsubscribe = core.pubsub.unsubscribe;
+  amman.publish     = util.fn.bind( core.pubsub.publish, amman.pubsub );
+  amman.subscribe   = util.fn.bind( core.pubsub.subscribe, amman.pubsub );
+  amman.unsubscribe = util.fn.bind( core.pubsub.unsubscribe, amman.pubsub );
 
   // logging
   amman.log   = core.log;
