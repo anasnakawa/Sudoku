@@ -30,8 +30,10 @@
       $.data( element, 'module', instance );
       ko.$root = ko.$root || {};
       ko.$root[ moduleId ] = instance;
+      instance.create();
       $( element ).attr( 'data-bind', 'with: $root.{moduleId}'.replace( /{moduleId}/, moduleId ) );
       ko.applyBindings( ko.$root, element.get ? element.get( 0 ) : element );
+      util.is.fn( instance.render ) && instance.render();
     } catch( e ) {
       core.error( e );
     }

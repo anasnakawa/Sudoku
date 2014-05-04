@@ -68,6 +68,7 @@ function concat() {
         , './js/amman/core/core.log.js'
         , './js/amman/core/core.util.js'
         , './js/amman/core/core.pubsub.js'
+        , './js/amman/core/core.signals.js'
         , './js/amman/core/core.storage.js'
         , './js/amman/core/core.pageFactory.js'
         , './js/amman/core/core.pageBase.js'

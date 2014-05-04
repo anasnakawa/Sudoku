@@ -74,7 +74,7 @@
 
   <script src="bower_components/knockout.js/knockout.debug.js"></script>
   <script src="bower_components/jquery/jquery.js"></script>
-  <script src="bower_components/lodash/lodash.underscore.js"></script>  
+  <script src="bower_components/lodash/dist/lodash.underscore.js"></script>  
   <script src="js/amman/amman.js"></script>
   <!--TODO: use one refrence for all sudoku engine files -->  
   <script src="js/engine/gameLevel.js"></script>
@@ -120,7 +120,7 @@
   }
 
   calculate();
-  document.onresize = updateCss;
+  document.onresize = calculate;
   amman.startModule('app', '#app', {});
   //ko.applyBindings( app );
   </script>

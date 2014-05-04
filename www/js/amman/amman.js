@@ -18328,6 +18328,64 @@ if ( typeof window === "object" && typeof window.document === "object" ) {
 
 })( this.amman.core );
 /*!
+ * core.signals
+ * tiny signals implementation
+ * utilizing knockout under the hood
+ */
+
+(function( core ) { 'use strict';
+
+  /**
+   * locals
+   */
+
+  var ko = core.ko;
+
+  
+  /**
+   * `Signal` constructor
+   */
+
+  function Signal() {
+    return ko.observable();
+  }
+
+
+  /**
+   * dispatch a signal ( publish )
+   *
+   * @param {object} payload
+   * @api public
+   */
+
+  ko.observable.prototype.dispatch = function( payload ) {
+    this( payload );
+  }
+
+  /**
+   * listen to signal updates ( subscribe )
+   *
+   * @param {fn} handler
+   * @param {object} context
+   * @return {object} listen instance
+   * @api public
+   */
+
+  ko.observable.prototype.listen = function( handler, context ) {
+    var instance = this.subscribe( handler, context );
+    instance.unlisten = instance.dispose;
+    return instance;
+  }
+
+  
+  /**
+   * `expose` Signals
+   */
+
+  core.Signal = Signal;
+
+})( this.amman.core );
+/*!
  * core.storage
  */
 
@@ -18375,7 +18433,6 @@ if ( typeof window === "object" && typeof window.document === "object" ) {
       util.extend( this.options, options );
 
       this.create();
-      this.init();
     }
 
     modules[ moduleName ].prototype.create = function() {
@@ -18453,8 +18510,10 @@ if ( typeof window === "object" && typeof window.document === "object" ) {
       $.data( element, 'module', instance );
       ko.$root = ko.$root || {};
       ko.$root[ moduleId ] = instance;
+      instance.create();
       $( element ).attr( 'data-bind', 'with: $root.{moduleId}'.replace( /{moduleId}/, moduleId ) );
       ko.applyBindings( ko.$root, element.get ? element.get( 0 ) : element );
+      util.is.fn( instance.render ) && instance.render();
     } catch( e ) {
       core.error( e );
     }
@@ -18471,30 +18530,39 @@ if ( typeof window === "object" && typeof window.document === "object" ) {
 
 (function( amman ) { 'use strict';
 
+  // locals
+  var core = amman.core;
+
   // base libs
-  amman.$ = amman.core.$;
-  amman.ko = amman.core.ko;
-  amman._ = amman.core._;
+  amman.$   = core.$;
+  amman._   = core._;
+  amman.ko  = core.ko;
 
   // util
-  amman.util = amman.core.util;
+  amman.util = core.util;
 
   // module system
-  amman.registerModule = amman.core.registerModule;
-  amman.modules = amman.core.modules;
-  amman.startModule = amman.core.startModule;
+  amman.start           = core.startModule;
+  amman.module          = core.registerModule;
+  amman.modules         = core.modules;
+  amman.startModule     = core.startModule;
+  amman.registerModule  = core.registerModule;
 
   // config
-  amman.config = amman.core.config;
+  amman.config = core.config;
 
   // communication
-  amman.PubSub = amman.core.PubSub;
-  amman.pubsub = amman.core.pubsub;
+  amman.Signal      = core.Signal;
+  amman.PubSub      = core.PubSub;
+  amman.pubsub      = core.pubsub;
+  amman.publish     = core.pubsub.publish;
+  amman.subscribe   = core.pubsub.subscribe;
+  amman.unsubscribe = core.pubsub.unsubscribe;
 
   // logging
-  amman.log = amman.core.log;
-  amman.error = amman.core.error;
-  amman.info = amman.core.info;
-  amman.warn = amman.core.warn;
+  amman.log   = core.log;
+  amman.error = core.error;
+  amman.info  = core.info;
+  amman.warn  = core.warn;
 
 })( this.amman );

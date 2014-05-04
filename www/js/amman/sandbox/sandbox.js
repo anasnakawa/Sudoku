@@ -4,30 +4,39 @@
 
 (function( amman ) { 'use strict';
 
+  // locals
+  var core = amman.core;
+
   // base libs
-  amman.$ = amman.core.$;
-  amman.ko = amman.core.ko;
-  amman._ = amman.core._;
+  amman.$   = core.$;
+  amman._   = core._;
+  amman.ko  = core.ko;
 
   // util
-  amman.util = amman.core.util;
+  amman.util = core.util;
 
   // module system
-  amman.registerModule = amman.core.registerModule;
-  amman.modules = amman.core.modules;
-  amman.startModule = amman.core.startModule;
+  amman.start           = core.startModule;
+  amman.module          = core.registerModule;
+  amman.modules         = core.modules;
+  amman.startModule     = core.startModule;
+  amman.registerModule  = core.registerModule;
 
   // config
-  amman.config = amman.core.config;
+  amman.config = core.config;
 
   // communication
-  amman.PubSub = amman.core.PubSub;
-  amman.pubsub = amman.core.pubsub;
+  amman.Signal      = core.Signal;
+  amman.PubSub      = core.PubSub;
+  amman.pubsub      = core.pubsub;
+  amman.publish     = core.pubsub.publish;
+  amman.subscribe   = core.pubsub.subscribe;
+  amman.unsubscribe = core.pubsub.unsubscribe;
 
   // logging
-  amman.log = amman.core.log;
-  amman.error = amman.core.error;
-  amman.info = amman.core.info;
-  amman.warn = amman.core.warn;
+  amman.log   = core.log;
+  amman.error = core.error;
+  amman.info  = core.info;
+  amman.warn  = core.warn;
 
 })( this.amman );

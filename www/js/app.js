@@ -3,15 +3,15 @@
  * anas.nakawa@gmail.com
  */
 i = 7;
-amman.registerModule('app', {
+amman.module('app', {
     options: {}
     , create: function () {      
         this.selectedCell = ko.observable(null);
         this.game = Sudoku.newGame(Sudoku.gameLevel.EASY);
         this.game.start();
         this.cells = ko.observableArray(this.fillBoard(this.game)); 
-      }
-    , init: function () {
+    }
+    , render: function () {
     }
     , selectCell: function (cell) {
         if (this.selectedCell()) {

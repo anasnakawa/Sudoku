@@ -30,7 +30,6 @@
       util.extend( this.options, options );
 
       this.create();
-      this.init();
     }
 
     modules[ moduleName ].prototype.create = function() {
