@@ -1,9 +1,8 @@
 /*!
- * Sudoku Game
- * anas.nakawa@gmail.com
+ * game main module
  */
-i = 7;
-amman.module('app', {
+
+amman.module( 'game', {
     options: {}
     , create: function () {      
         this.selectedCell = ko.observable(null);
@@ -11,8 +10,7 @@ amman.module('app', {
         this.game.start();
         this.cells = ko.observableArray(this.fillBoard(this.game)); 
     }
-    , render: function () {
-    }
+    , render: function () {}
     , selectCell: function (cell) {
         if (this.selectedCell()) {
             this.selectedCell().isActive(false);

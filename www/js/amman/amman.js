@@ -18035,7 +18035,7 @@ if ( typeof window === "object" && typeof window.document === "object" ) {
 }.call(this));
 
 /*!
- * core.base
+ * base.main
  */
 
 (function( amman, $, ko, underscore ) { 'use strict';
@@ -18049,6 +18049,53 @@ if ( typeof window === "object" && typeof window.document === "object" ) {
   amman.core._ = underscore;
 
 })( this.amman = this.amman || {}, jQuery, ko, _ );
+/*!
+ * native extensions
+ */
+
+(function() { 'use strict';
+
+  /**
+   * string parser with data passed as arguments
+   *
+   * @param {arguments}
+   * @return {string}
+   *
+   * example: 
+   * --------
+   * 'i used both [0] & [1], however [1] looks good so far'.parse( 'iphone', 'andoird' );         // "i used both iphone & andoird, however andoird looks good so far"
+   * 'the weather now in [0] seems to be [1]'.parse( 'Dubai', function() { return 'very hot'; }); // "the weather now in Dubai seems to be very hot"
+   */
+   
+  String.prototype.parse = function() {
+    var args = arguments;
+    return this.replace( /\[([0-9]+)\]/g, function( token, match ) {
+      var index = parseInt( match, 10 );
+      var data = args[ index ];
+      return isNaN( index ) || data == null ? token: ( typeof data !== 'function' ? data: data() );
+    });
+  }
+   
+   
+  /**
+   * string parser with data passed as an object literal
+   *
+   * @param {object} data
+   * @return {string}
+   *
+   * example: 
+   * --------
+   * 'i used both {mob1} & {mob2}, however {mob2} looks good so far'.tmpl({ mob1: 'iphone', mob2: 'andoird' });         // "i used both iphone & andoird, however andoird looks good so far"
+   * 'the weather now in {city} seems to be {temp}'.tmpl({ city: 'Dubai', temp: function() { return 'very hot'; } });   // "the weather now in Dubai seems to be very hot"
+   */
+   
+  String.prototype.tmpl = function( data ) {
+    return this.replace( /{([A-Za-z0-9_$\-]+)}/g, function ( token, match ) {
+      return ( typeof data[ match ] !== 'function' ) ? data[ match ] : data[ match ]();
+    });
+  }
+
+})();
 /*!
  * core.config
  */
@@ -18123,13 +18170,15 @@ if ( typeof window === "object" && typeof window.document === "object" ) {
  * core.util
  */
 
-(function( core, _, $ ) { 'use strict';
+(function( core ) { 'use strict';
 
   var id = 0
+  , $ = core.$
+  , _ = core._
 
   // type checking
   // -------------
-  , isString = _.isString
+  , isString   = _.isString
   , isNumber   = _.isNumber
   , isBoolean  = _.isBoolean
   , isFunction = _.isFunction
@@ -18225,6 +18274,14 @@ if ( typeof window === "object" && typeof window.document === "object" ) {
       , numeric : isNumeric
     }
 
+    , fn: {
+        bind: _.bind
+      , throttle: _.throttle
+      , debounce: _.debounce
+    }
+
+    , unwrap: ko.utils.unwrapObservable
+
     , exception: deferException
     , defer: defer
     , id: {
@@ -18248,7 +18305,7 @@ if ( typeof window === "object" && typeof window.document === "object" ) {
     }
   }
 
-})( this.amman.core, _, jQuery );
+})( this.amman.core );
 /*!
  * core.pubsub
  */
@@ -18526,13 +18583,73 @@ if ( typeof window === "object" && typeof window.document === "object" ) {
 
 })( this.amman.core );
 /*!
- * amman sandbox
+ * grid system
  */
 
 (function( amman ) { 'use strict';
 
   // locals
+  var $ = amman.core.$;
+
+  // templates
+  var sheet = '<style id="css" type="text/css">[0]</style>';
+  var gridTemplate = [
+      '.grid-width-[0] { width: [1]px; }'
+    , '.grid-height-[0] { height: [1]px; }'
+    , '.grid-line-height-[0] { line-height: [1]px; }'
+  ].join( '\n' );
+  var size = Math.floor( document.body.clientWidth / 81 );
+  var cache = [];
+
+  function updateCss( styles ) {
+    var css = document.getElementById( 'css' );
+    if( !css ) {
+      document.write( sheet.parse( styles ) );
+      return;  
+    }
+    css.innerHtml( styles );
+  }
+
+  function calculate() {
+    var size = Math.floor( document.body.clientWidth / 9 )
+    , css = [ 
+        ''
+      , '.board { width: [0]px; }'.parse( ( size * 9 ) - 9 )
+      , '.box { width: [0]px; }'.parse( ( size * 3 ) - 3 )
+      , '.box .cell { width: [0]px; height: [0]px; line-height: [0]px; font-size: [1]px; }'.parse( size - 2, ( size - 2 ) / 2 )
+      , '.control { width: [0]px; height: [0]px; line-height: [0]px; font-size: [1]px; }'.parse( size - 4 , ( size - 4 ) / 2 )
+      , ''
+    ].join( '\n' )
+    , board = document.getElementById( 'board' );
+    
+    updateCss( css );
+
+    $( board ).width( $( board ).width() ).css( 'display', 'block' );    
+  }
+
+  calculate();
+
+  // grid system
+  // -----------
+
+  for( var i = 1; i <= 81; i++ ) {
+    cache.push( gridTemplate.parse( i, i * size ) );
+  }
+
+  document.write( sheet.parse( cache.join( '\n' ) ) );
+
+
+})( this.amman );
+/*!
+ * amman sandbox
+ */
+
+(function( amman, global ) { 'use strict';
+
+  // locals
   var core = amman.core;
+  var util = amman.util;
+  var _ = core._;
 
   // base libs
   amman.$   = core.$;
@@ -18556,9 +18673,9 @@ if ( typeof window === "object" && typeof window.document === "object" ) {
   amman.Signal      = core.Signal;
   amman.PubSub      = core.PubSub;
   amman.pubsub      = core.pubsub;
-  amman.publish     = util.fn.bind( core.pubsub.publish, amman.pubsub );
-  amman.subscribe   = util.fn.bind( core.pubsub.subscribe, amman.pubsub );
-  amman.unsubscribe = util.fn.bind( core.pubsub.unsubscribe, amman.pubsub );
+  amman.publish     = _.bind( core.pubsub.publish, amman.pubsub );
+  amman.subscribe   = _.bind( core.pubsub.subscribe, amman.pubsub );
+  amman.unsubscribe = _.bind( core.pubsub.unsubscribe, amman.pubsub );
 
   // logging
   amman.log   = core.log;
@@ -18566,4 +18683,6 @@ if ( typeof window === "object" && typeof window.document === "object" ) {
   amman.info  = core.info;
   amman.warn  = core.warn;
 
-})( this.amman );
+  global.util = amman.util;
+
+})( this.amman, this );

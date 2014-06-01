@@ -2,13 +2,15 @@
  * core.util
  */
 
-(function( core, _, $ ) { 'use strict';
+(function( core ) { 'use strict';
 
   var id = 0
+  , $ = core.$
+  , _ = core._
 
   // type checking
   // -------------
-  , isString = _.isString
+  , isString   = _.isString
   , isNumber   = _.isNumber
   , isBoolean  = _.isBoolean
   , isFunction = _.isFunction
@@ -104,6 +106,14 @@
       , numeric : isNumeric
     }
 
+    , fn: {
+        bind: _.bind
+      , throttle: _.throttle
+      , debounce: _.debounce
+    }
+
+    , unwrap: ko.utils.unwrapObservable
+
     , exception: deferException
     , defer: defer
     , id: {
@@ -127,4 +137,4 @@
     }
   }
 
-})( this.amman.core, _, jQuery );
+})( this.amman.core );

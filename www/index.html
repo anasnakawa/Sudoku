@@ -31,7 +31,9 @@
 </head>
 <body>
   <div class="app" id="app">
-    <button type="button" class="btn btn-success" data-bind="click:solveSudoku">solve </button>
+    <div class="grid-height-3">
+      <button type="button" class="btn btn-success" data-bind="click:solveSudoku">solve </button>
+    </div>
     <div class="playground">
       <div class="board clearfix" id="board">
         <!-- ko foreach: cells -->
@@ -43,23 +45,14 @@
               +($parent.selectedCell()&& $parent.selectedCell().box==$data[0].box?' active-digit-'+$parent.selectedCell().data():'')
                }">
               <!-- ko foreach: $data  -->
-              <div data-bind="click:function(cell){$parents[1].selectCell(cell);},text: $data.data,
-                    attr: { class: 'cell'
-                    +(' cell-digit-' + $data.data())
-                    +(' cell-row-' +$data.x )
-                    +(' cell-col-' +$data.y )
-                    +(Sudoku.cellType.SYSTEM==$data.type?' cell-input-auto':' cell-input-user')
-                    +($data.data() >0 ?' cell-filled':' cell-empty' )
-                    +($data.isActive()?' cell-active':'' )
-                    }">
-              </div>
+              <div data-bind="click: $parents[1].selectCell.bind( $parents[1], $data ), text: $data.data, cell: $data"></div>
               <!-- /ko -->
           </div>
         <!-- /ko -->
       </div>
       <div class="controls row">
         <!-- ko foreach: ko.utils.range(1, 9) -->
-          <div data-bind="click:function(value){$parent.fillCell(value);},text: $data, attr: { class: 'control control-' + $data }"></div>
+          <div data-bind="click: $parent.fillCell.bind($parent, $data), text: $data, attr: { class: 'control control-' + $data }"></div>
         <!-- /ko -->
       </div>     
      
@@ -91,38 +84,11 @@
   <script src="js/engine/game.js"></script>
   <script src="js/engine/sudoku.js"></script>
 
+  <!-- modules -->
+  <script src="js/modules/game/game.js"></script>
+  <script src="js/modules/game/game.extensions.js"></script>
+
+  <!-- app main file -->
   <script src="js/app.js"></script>
-  <script>
-  function updateCss( styles ) {
-    var css = document.getElementById( 'css' );
-    if( !css ) {
-      document.write( '<style id="css" type="text/css">{css}</style>'.replace( /{css}/, styles ) );
-      return;  
-    }
-    css.innerHtml( styles );
-  }
-
-  function calculate() {
-    var size = Math.floor( document.body.clientWidth / 9 )
-    , css = [ 
-        ''
-      , '.board { width: {boardSize}px; }'.replace( /{boardSize}/, ( size * 9 ) - 9 )
-      , '.box { width: {boxSize}px; }'.replace( /{boxSize}/, ( size * 3 ) - 3 )
-      , '.box .cell { width: {size}px; height: {size}px; line-height: {size}px; font-size: {text}px; }'.replace( /{size}/g, size - 2 ).replace( /{text}/g, ( size - 2 ) / 2 )
-      , '.control { width: {size}px; height: {size}px; line-height: {size}px; font-size: {text}px; }'.replace( /{size}/g, size - 4 ).replace( /{text}/, ( size - 4 ) / 2 )
-      , ''
-    ].join( '\n' )
-    , board = document.getElementById( 'board' );
-    
-    updateCss( css );
-
-    $( board ).width( $( board ).width() ).css( 'display', 'block' );    
-  }
-
-  calculate();
-  document.onresize = calculate;
-  amman.startModule('app', '#app', {});
-  //ko.applyBindings( app );
-  </script>
 </body>
 </html>

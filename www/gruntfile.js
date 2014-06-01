@@ -57,12 +57,14 @@ function concat() {
   return {
     amman: {
       src: [
-          // base
+          // components
           './bower_components/knockout.js/knockout.debug.js'
         , './bower_components/jquery/jquery.js'
         , './bower_components/lodash/dist/lodash.underscore.js'
-        , './js/amman/core/core.base.js'
-          // core components
+          // base
+        , './js/amman/base/base.main.js'
+        , './js/amman/base/base.util.js'
+          // core
         , './js/amman/core/core.config.js'
         , './js/amman/core/core.events.js'
         , './js/amman/core/core.log.js'
@@ -76,6 +78,7 @@ function concat() {
         , './js/amman/core/core.moduleBase.js'
         , './js/amman/core/core.moduleMain.js'
         // ui
+        , './js/amman/ui/ui.grid.js'
         // sandbox
         , './js/amman/sandbox/sandbox.js'
       ]

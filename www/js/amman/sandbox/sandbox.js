@@ -2,10 +2,12 @@
  * amman sandbox
  */
 
-(function( amman ) { 'use strict';
+(function( amman, global ) { 'use strict';
 
   // locals
   var core = amman.core;
+  var util = amman.util;
+  var _ = core._;
 
   // base libs
   amman.$   = core.$;
@@ -29,9 +31,9 @@
   amman.Signal      = core.Signal;
   amman.PubSub      = core.PubSub;
   amman.pubsub      = core.pubsub;
-  amman.publish     = util.fn.bind( core.pubsub.publish, amman.pubsub );
-  amman.subscribe   = util.fn.bind( core.pubsub.subscribe, amman.pubsub );
-  amman.unsubscribe = util.fn.bind( core.pubsub.unsubscribe, amman.pubsub );
+  amman.publish     = _.bind( core.pubsub.publish, amman.pubsub );
+  amman.subscribe   = _.bind( core.pubsub.subscribe, amman.pubsub );
+  amman.unsubscribe = _.bind( core.pubsub.unsubscribe, amman.pubsub );
 
   // logging
   amman.log   = core.log;
@@ -39,4 +41,6 @@
   amman.info  = core.info;
   amman.warn  = core.warn;
 
-})( this.amman );
+  global.util = amman.util;
+
+})( this.amman, this );
