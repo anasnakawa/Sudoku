@@ -1,0 +1,1 @@
+amman.startModule('game', '#app', {});
