@@ -19,7 +19,6 @@ body {
 }
 
 .box {
-
   float: left;
 
   .cell {
@@ -30,6 +29,11 @@ body {
     text-align: center;
     border-right: 1px solid $board-border-color;
     border-bottom: 1px solid $board-border-color;
+    @include transition( background-color .3s cubic-bezier(0.230, 1.000, 0.320, 1.000) );
+
+    &.cell-active {
+      background-color: rgba( 255, 0, 0, 0.5ch );
+    }
   }
 }
 

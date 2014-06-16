@@ -2,28 +2,21 @@
  * game module custom extensions
  */
 
-
 /**
- * cell class calculations
+ * box class calculations
  */
 
-/**
-'box' +' box-' + $data[0].box
-    +($parent.selectedCell()&& $parent.selectedCell().box==$data[0].box?' active-row-'+$parent.selectedCell().x:'')
-    +($parent.selectedCell()&& $parent.selectedCell().box==$data[0].box?' active-col-'+$parent.selectedCell().y:'')
-    +($parent.selectedCell()&& $parent.selectedCell().box==$data[0].box?' active-box-'+$parent.selectedCell().box:'')
-    +($parent.selectedCell()&& $parent.selectedCell().box==$data[0].box?' active-digit-'+$parent.selectedCell().data():'')
- */
 ko.bindingHandlers.box = {
   update: function( element, value, bindings, viewModel, context ) {
+    // debugger;
     var $parent = context.$parent;
-    var $data = context.$data;
+    var $data = util.unwrap( value() );
     var css = [ 'box' ];
     var selectedCell = $parent.selectedCell();
 
-    css.push( 'box-' + data[ 0 ].box );
+    css.push( 'box-' + $data[ 0 ].box );
 
-    if( selectedCell && selectedCell.box === $data[0].box ) {
+    if( selectedCell && selectedCell.box === $data[ 0 ].box ) {
       css.push( 'active-row-' + selectedCell.x );
       css.push( 'active-col-' + selectedCell.y );
       css.push( 'active-box-' + selectedCell.box );
@@ -36,13 +29,7 @@ ko.bindingHandlers.box = {
 }
 
 /**
-class: 'cell'
-+(' cell-digit-' + $data.data())
-+(' cell-row-' +$data.x )
-+(' cell-col-' +$data.y )
-+(Sudoku.cellType.SYSTEM==$data.type?' cell-input-auto':' cell-input-user')
-+($data.data() >0 ?' cell-filled':' cell-empty' )
-+($data.isActive()?' cell-active':''
+ * cell class calculations
  */
 
 ko.bindingHandlers.cell = {
@@ -63,9 +50,17 @@ ko.bindingHandlers.cell = {
 }
 
 
+/**
+ * control class calculations
+ */
 
+ko.bindingHandlers.control = {
+  update: function( element, value, bindings, viewModel, context ) {
+    var $data = util.unwrap( value() );
+    var css = [ 'control' ];
 
+    css.push( 'control-' + $data );
 
-
-
-
+    $( element ).addClass( css.join( ' ' ) );
+  }
+}

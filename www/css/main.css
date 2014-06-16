@@ -139,12 +139,12 @@ h1 {
   clear: both;
 }
 
-/* line 8, ../sass/_board.scss */
+/* line 8, ../sass/game/_board.scss */
 body {
   color: #777777;
 }
 
-/* line 12, ../sass/_board.scss */
+/* line 12, ../sass/game/_board.scss */
 .board {
   display: inline-block;
   margin-top: 5px;
@@ -154,11 +154,11 @@ body {
   border-left: 1px solid blue;
 }
 
-/* line 21, ../sass/_board.scss */
+/* line 21, ../sass/game/_board.scss */
 .box {
   float: left;
 }
-/* line 25, ../sass/_board.scss */
+/* line 24, ../sass/game/_board.scss */
 .box .cell {
   float: left;
   width: 40px;
@@ -167,23 +167,31 @@ body {
   text-align: center;
   border-right: 1px solid blue;
   border-bottom: 1px solid blue;
+  -webkit-transition: background-color 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  -moz-transition: background-color 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  -o-transition: background-color 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: background-color 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+/* line 34, ../sass/game/_board.scss */
+.box .cell.cell-active {
+  background-color: rgba(255, 0, 0, 0.5);
 }
 
-/* line 39, ../sass/_board.scss */
+/* line 43, ../sass/game/_board.scss */
 .board .row .cell:last-child {
   border-right: none;
 }
-/* line 44, ../sass/_board.scss */
+/* line 48, ../sass/game/_board.scss */
 .board .row:last-child .cell {
   border-bottom: none;
 }
 
-/* line 54, ../sass/_board.scss */
+/* line 58, ../sass/game/_board.scss */
 .controls {
   margin-top: 20px;
 }
 
-/* line 58, ../sass/_board.scss */
+/* line 62, ../sass/game/_board.scss */
 .control {
   float: left;
   background-color: blue;

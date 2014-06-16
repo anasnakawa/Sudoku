@@ -10,7 +10,7 @@
     "tests"
   ],
   "dependencies": {
-    "knockout.js": "~3.0.0",
+    "knockout.js": "2.3.0",
     "lodash": "~2.4.1",
     "modernizr": "~2.7.2",
     "phonegap": "~2.9.1",

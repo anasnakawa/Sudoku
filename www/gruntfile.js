@@ -58,7 +58,7 @@ function concat() {
     amman: {
       src: [
           // components
-          './bower_components/knockout.js/knockout.debug.js'
+          './bower_components/knockout.js/knockout-2.3.0.debug.js'
         , './bower_components/jquery/jquery.js'
         , './bower_components/lodash/dist/lodash.underscore.js'
           // base
